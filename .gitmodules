@@ -1,0 +1,3 @@
+[submodule "PDFsharp"]
+	path = PDFsharp
+	url = https://github.com/empira/PDFsharp

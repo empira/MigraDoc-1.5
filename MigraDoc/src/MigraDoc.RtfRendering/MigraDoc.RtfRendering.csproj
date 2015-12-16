@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BE1A7733-C8B8-47F2-B0C5-154009BB800D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MigraDoc</RootNamespace>
+    <AssemblyName>MigraDoc.RtfRendering</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\MigraDoc.RtfRendering.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>StrongnameKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PdfSharp.Drawing.Shapes\Shape.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\VersionInfo.cs" />
+    <Compile Include="RtfRendering.Resources\Messages2.cs" />
+    <Compile Include="RtfRendering\BookmarkFieldRenderer.cs" />
+    <Compile Include="RtfRendering\BorderRenderer.cs" />
+    <Compile Include="RtfRendering\BorderRendererBase.cs" />
+    <Compile Include="RtfRendering\BordersRenderer.cs" />
+    <Compile Include="RtfRendering\CellFormatRenderer.cs" />
+    <Compile Include="RtfRendering\CellRenderer.cs" />
+    <Compile Include="RtfRendering\CharacterRenderer.cs" />
+    <Compile Include="RtfRendering\ChartRenderer.cs" />
+    <Compile Include="RtfRendering\DateFieldRenderer.cs" />
+    <Compile Include="RtfRendering\enums\RtfUnit.cs" />
+    <Compile Include="RtfRendering\FieldRenderer.cs" />
+    <Compile Include="RtfRendering\FontRenderer.cs" />
+    <Compile Include="RtfRendering\FootnoteRenderer.cs" />
+    <Compile Include="RtfRendering\FormattedTextRenderer.cs" />
+    <Compile Include="RtfRendering\HeaderFooterRenderer.cs" />
+    <Compile Include="RtfRendering\HeadersFootersRenderer.cs" />
+    <Compile Include="RtfRendering\HyperlinkRenderer.cs" />
+    <Compile Include="RtfRendering\ImageRenderer.cs" />
+    <Compile Include="RtfRendering\InfoFieldRenderer.cs" />
+    <Compile Include="RtfRendering\ListInfoOverrideRenderer.cs" />
+    <Compile Include="RtfRendering\ListInfoRenderer.cs" />
+    <Compile Include="RtfRendering\NumericFieldRendererBase.cs" />
+    <Compile Include="RtfRendering\NumPagesFieldRenderer.cs" />
+    <Compile Include="RtfRendering\PageBreakRenderer.cs" />
+    <Compile Include="RtfRendering\PageFieldRenderer.cs" />
+    <Compile Include="RtfRendering\PageRefFieldRenderer.cs" />
+    <Compile Include="RtfRendering\PageSetupRenderer.cs" />
+    <Compile Include="RtfRendering\ParagraphFormatRenderer.cs" />
+    <Compile Include="RtfRendering\ParagraphRenderer.cs" />
+    <Compile Include="RtfRendering\RendererBase.cs" />
+    <Compile Include="RtfRendering\RendererFactory.cs" />
+    <Compile Include="RtfRendering\RowRenderer.cs" />
+    <Compile Include="RtfRendering\RowsRenderer.cs" />
+    <Compile Include="RtfRendering\RtfDocumentRenderer.cs" />
+    <Compile Include="RtfRendering\RtfWriter.cs" />
+    <Compile Include="RtfRendering\SectionFieldRenderer.cs" />
+    <Compile Include="RtfRendering\SectionPagesFieldRenderer.cs" />
+    <Compile Include="RtfRendering\SectionRenderer.cs" />
+    <Compile Include="RtfRendering\ShadingRenderer.cs" />
+    <Compile Include="RtfRendering\ShapeRenderer.cs" />
+    <Compile Include="RtfRendering\StyleAndFormatRenderer.cs" />
+    <Compile Include="RtfRendering\StyleRenderer.cs" />
+    <Compile Include="RtfRendering\TableRenderer.cs" />
+    <Compile Include="RtfRendering\TabStopRenderer.cs" />
+    <Compile Include="RtfRendering\TabStopsRenderer.cs" />
+    <Compile Include="RtfRendering\TextFrameRenderer.cs" />
+    <Compile Include="RtfRendering\TextRenderer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RtfRendering.Resources\Messages.de.restext" />
+    <None Include="RtfRendering.Resources\Messages.restext" />
+    <None Include="RtfRendering.Resources\PDF.psd" />
+    <None Include="StrongnameKey.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp.Charting\PdfSharp.Charting.csproj">
+      <Project>{6f98a822-41b0-4c7a-85a6-e95c1d3e88ef}</Project>
+      <Name>PdfSharp.Charting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp\PdfSharp.csproj">
+      <Project>{5a6055bc-bf86-4fdd-9f62-0109db7a303b}</Project>
+      <Name>PdfSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MigraDoc.DocumentObjectModel\MigraDoc.DocumentObjectModel.csproj">
+      <Project>{6318a852-ef6b-486f-8547-3d7e736d7943}</Project>
+      <Name>MigraDoc.DocumentObjectModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MigraDoc.Rendering\MigraDoc.Rendering.csproj">
+      <Project>{a0b7940a-0bfc-476d-a204-73f7c0f88fde}</Project>
+      <Name>MigraDoc.Rendering</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RtfRendering.Resources\Messages2.de.resx">
+      <DependentUpon>Messages2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RtfRendering.Resources\Messages2.resx">
+      <DependentUpon>Messages2.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RtfRendering.Resources\PDF.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

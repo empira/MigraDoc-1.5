@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6318A852-EF6B-486F-8547-3D7E736D7943}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MigraDoc</RootNamespace>
+    <AssemblyName>MigraDoc.DocumentObjectModel</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\MigraDoc.DocumentObjectModel.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>StrongnameKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DocumentObjectModel.Fields\BookmarkField.cs" />
+    <Compile Include="DocumentObjectModel.Fields\DateField.cs" />
+    <Compile Include="DocumentObjectModel.Fields\enums\InfoFieldType.cs" />
+    <Compile Include="DocumentObjectModel.Fields\InfoField.cs" />
+    <Compile Include="DocumentObjectModel.Fields\NumericFieldBase.cs" />
+    <Compile Include="DocumentObjectModel.Fields\NumPagesField.cs" />
+    <Compile Include="DocumentObjectModel.Fields\PageField.cs" />
+    <Compile Include="DocumentObjectModel.Fields\PageRefField.cs" />
+    <Compile Include="DocumentObjectModel.Fields\SectionField.cs" />
+    <Compile Include="DocumentObjectModel.Fields\SectionPagesField.cs" />
+    <Compile Include="DocumentObjectModel.Internals\DomValueDescriptorCollection.cs" />
+    <Compile Include="DocumentObjectModel.Internals\DVAttribute.cs" />
+    <Compile Include="DocumentObjectModel.Internals\enums\GV.cs" />
+    <Compile Include="DocumentObjectModel.Internals\enums\VDFlags.cs" />
+    <Compile Include="DocumentObjectModel.Internals\INullableValue.cs" />
+    <Compile Include="DocumentObjectModel.Internals\Meta.cs" />
+    <Compile Include="DocumentObjectModel.Internals\NBool.cs" />
+    <Compile Include="DocumentObjectModel.Internals\NDouble.cs" />
+    <Compile Include="DocumentObjectModel.Internals\NEnum.cs" />
+    <Compile Include="DocumentObjectModel.Internals\NInt.cs" />
+    <Compile Include="DocumentObjectModel.Internals\NString.cs" />
+    <Compile Include="DocumentObjectModel.Internals\ValueDescriptor.cs" />
+    <Compile Include="DocumentObjectModel.IO\DdlParser.cs" />
+    <Compile Include="DocumentObjectModel.IO\DdlParserException.cs" />
+    <Compile Include="DocumentObjectModel.IO\DdlReader.cs" />
+    <Compile Include="DocumentObjectModel.IO\DdlReaderError.cs" />
+    <Compile Include="DocumentObjectModel.IO\DdlReaderErrors.cs" />
+    <Compile Include="DocumentObjectModel.IO\DdlScanner.cs" />
+    <Compile Include="DocumentObjectModel.IO\DdlWriter.cs" />
+    <Compile Include="DocumentObjectModel.IO\enums\DdlErrorLevel.cs" />
+    <Compile Include="DocumentObjectModel.IO\enums\Symbol.cs" />
+    <Compile Include="DocumentObjectModel.IO\enums\TokenType.cs" />
+    <Compile Include="DocumentObjectModel.IO\Symbols.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\Axis.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\AxisTitle.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\Chart.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\ChartObject.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\DataLabel.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\enums\BlankType.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\enums\ChartType.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\enums\DataLabelPosition.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\enums\DataLabelType.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\enums\HorizontalAlignment.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\enums\MarkerStyle.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\enums\TickMarkType.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\Gridlines.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\Legend.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\PlotArea.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\Point.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\Series.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\SeriesCollection.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\SeriesElements.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\TextArea.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\TickLabels.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\XSeries.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\XSeriesElements.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\XValue.cs" />
+    <Compile Include="DocumentObjectModel.Shapes.Charts\XValues.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\Barcode.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\enums\BarcodeType.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\enums\DashStyle.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\enums\LineStyle.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\enums\RelativeHorizontal.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\enums\RelativeVertical.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\enums\ShapePosition.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\enums\TextOrientation.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\enums\WrapStyle.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\FillFormat.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\Image.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\LeftPosition.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\LineFormat.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\PictureFormat.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\Shape.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\TextFrame.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\TopPosition.cs" />
+    <Compile Include="DocumentObjectModel.Shapes\WrapFormat.cs" />
+    <Compile Include="DocumentObjectModel.Tables\Cell.cs" />
+    <Compile Include="DocumentObjectModel.Tables\Cells.cs" />
+    <Compile Include="DocumentObjectModel.Tables\Column.cs" />
+    <Compile Include="DocumentObjectModel.Tables\Columns.cs" />
+    <Compile Include="DocumentObjectModel.Tables\enums\Edge.cs" />
+    <Compile Include="DocumentObjectModel.Tables\enums\RoundedCorner.cs" />
+    <Compile Include="DocumentObjectModel.Tables\enums\RowAlignment.cs" />
+    <Compile Include="DocumentObjectModel.Tables\enums\RowHeightRule.cs" />
+    <Compile Include="DocumentObjectModel.Tables\enums\VerticalAlignment.cs" />
+    <Compile Include="DocumentObjectModel.Tables\Row.cs" />
+    <Compile Include="DocumentObjectModel.Tables\Rows.cs" />
+    <Compile Include="DocumentObjectModel.Tables\Table.cs" />
+    <Compile Include="DocumentObjectModel.Tables\TableFormatter.cs" />
+    <Compile Include="DocumentObjectModel.Visitors\CellComparer.cs" />
+    <Compile Include="DocumentObjectModel.Visitors\DocumentObjectVisitor.cs" />
+    <Compile Include="DocumentObjectModel.Visitors\IDomVisitable.cs" />
+    <Compile Include="DocumentObjectModel.Visitors\MergedCellList.cs" />
+    <Compile Include="DocumentObjectModel.Visitors\PdfFlattenVisitor.cs" />
+    <Compile Include="DocumentObjectModel.Visitors\RtfFlattenVisitor.cs" />
+    <Compile Include="DocumentObjectModel.Visitors\VisitorBase.cs" />
+    <Compile Include="DocumentObjectModel\Border.cs" />
+    <Compile Include="DocumentObjectModel\Borders.cs" />
+    <Compile Include="DocumentObjectModel\Character.cs" />
+    <Compile Include="DocumentObjectModel\Chars.cs" />
+    <Compile Include="DocumentObjectModel\Color.cs" />
+    <Compile Include="DocumentObjectModel\Colors.cs" />
+    <Compile Include="DocumentObjectModel\DdlEncoder.cs" />
+    <Compile Include="DocumentObjectModel\DdlVisibleAttribute.cs" />
+    <Compile Include="DocumentObjectModel\Document.cs" />
+    <Compile Include="DocumentObjectModel\DocumentElements.cs" />
+    <Compile Include="DocumentObjectModel\DocumentInfo.cs" />
+    <Compile Include="DocumentObjectModel\DocumentObject.cs" />
+    <Compile Include="DocumentObjectModel\DocumentObjectCollection.cs" />
+    <Compile Include="DocumentObjectModel\DocumentRelations.cs" />
+    <Compile Include="DocumentObjectModel\DomSR.cs" />
+    <Compile Include="DocumentObjectModel\enums\BorderStyle.cs" />
+    <Compile Include="DocumentObjectModel\enums\BorderType.cs" />
+    <Compile Include="DocumentObjectModel\enums\BreakType.cs" />
+    <Compile Include="DocumentObjectModel\enums\ColorName.cs" />
+    <Compile Include="DocumentObjectModel\enums\DomMsgID.cs" />
+    <Compile Include="DocumentObjectModel\enums\FontProperties.cs" />
+    <Compile Include="DocumentObjectModel\enums\FootnoteLocation.cs" />
+    <Compile Include="DocumentObjectModel\enums\FootnoteNumberingRule.cs" />
+    <Compile Include="DocumentObjectModel\enums\FootnoteNumberStyle.cs" />
+    <Compile Include="DocumentObjectModel\enums\HeaderFooterIndex.cs" />
+    <Compile Include="DocumentObjectModel\enums\HyperlinkType.cs" />
+    <Compile Include="DocumentObjectModel\enums\LineSpacingRule.cs" />
+    <Compile Include="DocumentObjectModel\enums\ListType.cs" />
+    <Compile Include="DocumentObjectModel\enums\Orientation.cs" />
+    <Compile Include="DocumentObjectModel\enums\OutlineLevel.cs" />
+    <Compile Include="DocumentObjectModel\enums\PageFormat.cs" />
+    <Compile Include="DocumentObjectModel\enums\ParagraphAlignment.cs" />
+    <Compile Include="DocumentObjectModel\enums\StyleType.cs" />
+    <Compile Include="DocumentObjectModel\enums\SymbolName.cs" />
+    <Compile Include="DocumentObjectModel\enums\TabAlignment.cs" />
+    <Compile Include="DocumentObjectModel\enums\TabLeader.cs" />
+    <Compile Include="DocumentObjectModel\enums\TextFormat.cs" />
+    <Compile Include="DocumentObjectModel\enums\Underline.cs" />
+    <Compile Include="DocumentObjectModel\enums\UnitType.cs" />
+    <Compile Include="DocumentObjectModel\Font.cs" />
+    <Compile Include="DocumentObjectModel\Footnote.cs" />
+    <Compile Include="DocumentObjectModel\FormattedText.cs" />
+    <Compile Include="DocumentObjectModel\HeaderFooter.cs" />
+    <Compile Include="DocumentObjectModel\HeadersFooters.cs" />
+    <Compile Include="DocumentObjectModel\Hyperlink.cs" />
+    <Compile Include="DocumentObjectModel\ImageHelper.cs" />
+    <Compile Include="DocumentObjectModel\ListInfo.cs" />
+    <Compile Include="DocumentObjectModel\PageBreak.cs" />
+    <Compile Include="DocumentObjectModel\PageSetup.cs" />
+    <Compile Include="DocumentObjectModel\Paragraph.cs" />
+    <Compile Include="DocumentObjectModel\ParagraphElements.cs" />
+    <Compile Include="DocumentObjectModel\ParagraphFormat.cs" />
+    <Compile Include="DocumentObjectModel\Section.cs" />
+    <Compile Include="DocumentObjectModel\Sections.cs" />
+    <Compile Include="DocumentObjectModel\Serializer.cs" />
+    <Compile Include="DocumentObjectModel\Shading.cs" />
+    <Compile Include="DocumentObjectModel\Style.cs" />
+    <Compile Include="DocumentObjectModel\StyleNames.cs" />
+    <Compile Include="DocumentObjectModel\Styles.cs" />
+    <Compile Include="DocumentObjectModel\TabStop.cs" />
+    <Compile Include="DocumentObjectModel\TabStops.cs" />
+    <Compile Include="DocumentObjectModel\Text.cs" />
+    <Compile Include="DocumentObjectModel\TextMeasurement_delete.cs" />
+    <Compile Include="DocumentObjectModel\Unit.cs" />
+    <Compile Include="DocumentObjectModel\VersionInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\ProductVersionInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DocumentObjectModel.Resources\Messages.de.restext" />
+    <EmbeddedResource Include="DocumentObjectModel.Resources\Messages.restext" />
+    <None Include="StrongnameKey.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DocumentObjectModel.UnitTests\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

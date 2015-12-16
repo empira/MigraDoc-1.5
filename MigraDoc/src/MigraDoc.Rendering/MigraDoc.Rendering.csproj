@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A0B7940A-0BFC-476D-A204-73F7C0F88FDE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MigraDoc</RootNamespace>
+    <AssemblyName>MigraDoc.Rendering</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CORE;CORE_WITH_GDI</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;CORE;CORE_WITH_GDI</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\MigraDoc.Rendering.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>StrongnameKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\VersionInfo.cs" />
+    <Compile Include="Rendering.ChartMapper\AxisMapper.cs" />
+    <Compile Include="Rendering.ChartMapper\ChartMapper.cs" />
+    <Compile Include="Rendering.ChartMapper\DataLabelMapper.cs" />
+    <Compile Include="Rendering.ChartMapper\FillFormatMapper.cs" />
+    <Compile Include="Rendering.ChartMapper\FontMapper.cs" />
+    <Compile Include="Rendering.ChartMapper\LegendMapper.cs" />
+    <Compile Include="Rendering.ChartMapper\LineFormatMapper.cs" />
+    <Compile Include="Rendering.ChartMapper\PlotAreaMapper.cs" />
+    <Compile Include="Rendering.ChartMapper\SeriesCollectionMapper.cs" />
+    <Compile Include="Rendering.ChartMapper\XValuesMapper.cs" />
+    <Compile Include="Rendering.Resources\Messages2.cs" />
+    <Compile Include="Rendering.UnitTest\TestLayout.cs" />
+    <Compile Include="Rendering.UnitTest\TestParagraphIterator.cs" />
+    <Compile Include="Rendering.UnitTest\TestParagraphRenderer.cs" />
+    <Compile Include="Rendering.UnitTest\TestTable.cs" />
+    <Compile Include="Rendering.UnitTest\ValueDumper.cs" />
+    <Compile Include="Rendering\Area.cs" />
+    <Compile Include="Rendering\BordersRenderer.cs" />
+    <Compile Include="Rendering\ChartFormatInfo.cs" />
+    <Compile Include="Rendering\ChartRenderer.cs" />
+    <Compile Include="Rendering\ChartRenderInfo.cs" />
+    <Compile Include="Rendering\ColorHelper.cs" />
+    <Compile Include="Rendering\DocumentRenderer.cs" />
+    <Compile Include="Rendering\enums\ElementAlignment.cs" />
+    <Compile Include="Rendering\enums\Floating.cs" />
+    <Compile Include="Rendering\enums\HorizontalReference.cs" />
+    <Compile Include="Rendering\enums\ImageFailure.cs" />
+    <Compile Include="Rendering\enums\PageRenderOptions.cs" />
+    <Compile Include="Rendering\enums\VerticalReference.cs" />
+    <Compile Include="Rendering\FieldInfos.cs" />
+    <Compile Include="Rendering\FillFormatRenderer.cs" />
+    <Compile Include="Rendering\FontHandler.cs" />
+    <Compile Include="Rendering\FormatInfo.cs" />
+    <Compile Include="Rendering\FormattedCell.cs" />
+    <Compile Include="Rendering\FormattedDocument.cs" />
+    <Compile Include="Rendering\FormattedHeaderFooter.cs" />
+    <Compile Include="Rendering\FormattedTextArea.cs" />
+    <Compile Include="Rendering\FormattedTextFrame.cs" />
+    <Compile Include="Rendering\IAreaProvider.cs" />
+    <Compile Include="Rendering\ImageFormatInfo.cs" />
+    <Compile Include="Rendering\ImageRenderer.cs" />
+    <Compile Include="Rendering\ImageRenderInfo.cs" />
+    <Compile Include="Rendering\LayoutInfo.cs" />
+    <Compile Include="Rendering\LineFormatRenderer.cs" />
+    <Compile Include="Rendering\NumberFormatter.cs" />
+    <Compile Include="Rendering\PageBreakFormatInfo.cs" />
+    <Compile Include="Rendering\PageBreakRenderer.cs" />
+    <Compile Include="Rendering\PageBreakRenderInfo.cs" />
+    <Compile Include="Rendering\PageInfo.cs" />
+    <Compile Include="Rendering\ParagraphFormatInfo.cs" />
+    <Compile Include="Rendering\ParagraphIterator.cs" />
+    <Compile Include="Rendering\ParagraphRenderer.cs" />
+    <Compile Include="Rendering\ParagraphRenderInfo.cs" />
+    <Compile Include="Rendering\PdfDocumentRenderer.cs" />
+    <Compile Include="Rendering\PdfPrinter.cs" />
+    <Compile Include="Rendering\Renderer.cs" />
+    <Compile Include="Rendering\RenderInfo.cs" />
+    <Compile Include="Rendering\ShadingRenderer.cs" />
+    <Compile Include="Rendering\ShapeFormatInfo.cs" />
+    <Compile Include="Rendering\ShapeRenderer.cs" />
+    <Compile Include="Rendering\ShapeRenderInfo.cs" />
+    <Compile Include="Rendering\TableFormatInfo.cs" />
+    <Compile Include="Rendering\TableRenderer.cs" />
+    <Compile Include="Rendering\TableRenderInfo.cs" />
+    <Compile Include="Rendering\TextFrameFormatInfo.cs" />
+    <Compile Include="Rendering\TextFrameRenderer.cs" />
+    <Compile Include="Rendering\TextFrameRenderInfo.cs" />
+    <Compile Include="Rendering\TopDownFormatter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp.Charting\PdfSharp.Charting.csproj">
+      <Project>{6f98a822-41b0-4c7a-85a6-e95c1d3e88ef}</Project>
+      <Name>PdfSharp.Charting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp\PDFsharp.csproj">
+      <Project>{5a6055bc-bf86-4fdd-9f62-0109db7a303b}</Project>
+      <Name>PDFsharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MigraDoc.DocumentObjectModel\MigraDoc.DocumentObjectModel.csproj">
+      <Project>{6318a852-ef6b-486f-8547-3d7e736d7943}</Project>
+      <Name>MigraDoc.DocumentObjectModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Rendering.Resources\Messages.de.restext" />
+    <EmbeddedResource Include="Rendering.Resources\Messages.restext" />
+    <None Include="StrongnameKey.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Rendering.Resources\Messages2.de.resx">
+      <DependentUpon>Messages2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rendering.Resources\Messages2.resx">
+      <DependentUpon>Messages2.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
