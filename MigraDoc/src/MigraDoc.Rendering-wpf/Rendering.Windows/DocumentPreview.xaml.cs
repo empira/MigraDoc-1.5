@@ -211,7 +211,7 @@ namespace MigraDoc.Rendering.Windows
         {
           try
           {
-            size96 = GetSizeOfPage(1, out pageWidth, out pageHeight);
+            size96 = GetSizeOfPage(pageNumber, out pageWidth, out pageHeight);
 
             DrawingVisual dv = new DrawingVisual();
             DrawingContext dc = dv.RenderOpen();
