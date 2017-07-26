@@ -33,6 +33,7 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text;
 
 /*
   ddl = <document> | <empty>
@@ -1429,7 +1430,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         protected string ScanStringLiteral()
         {
             Debug.Assert(Char == '\"');
-            string str = "";
+            StringBuilder str = new StringBuilder();
             ScanNextChar();
             while (_currChar != Chars.QuoteDbl && !IsEof(_currChar))
             {
@@ -1439,43 +1440,43 @@ namespace MigraDoc.DocumentObjectModel.IO
                     switch (_currChar)
                     {
                         case 'a':
-                            str += '\a';
+                            str.Append('\a');
                             break;
 
                         case 'b':
-                            str += '\b';
+                            str.Append('\b');
                             break;
 
                         case 'f':
-                            str += '\f';
+                            str.Append('\f');
                             break;
 
                         case 'n':
-                            str += '\n';
+                            str.Append('\n');
                             break;
 
                         case 'r':
-                            str += '\r';
+                            str.Append('\r');
                             break;
 
                         case 't':
-                            str += '\t';
+                            str.Append('\t');
                             break;
 
                         case 'v':
-                            str += '\v';
+                            str.Append('\v');
                             break;
 
                         case '\'':
-                            str += '\'';
+                            str.Append('\'');
                             break;
 
                         case '\"':
-                            str += '\"';
+                            str.Append('\"');
                             break;
 
                         case '\\':
-                            str += '\\';
+                            str.Append('\\');
                             break;
 
                         case 'x':
@@ -1490,7 +1491,7 @@ namespace MigraDoc.DocumentObjectModel.IO
                                     ScanNextChar();
                                 }
                                 if (hexNrCount <= 2)
-                                    str += "?????"; //(char)AscULongFromHexString(hexString);
+                                    str.Append("?????"); //(char)AscULongFromHexString(hexString);
                                 else
                                     throw new DdlParserException(DdlErrorLevel.Error,
                                         DomSR.GetString(DomMsgID.EscapeSequenceNotAllowed), DomMsgID.EscapeSequenceNotAllowed);
@@ -1525,12 +1526,12 @@ namespace MigraDoc.DocumentObjectModel.IO
                     throw new DdlParserException(DdlErrorLevel.Error,
                       DomSR.GetString(DomMsgID.NewlineInString), DomMsgID.NewlineInString);
                 else
-                    str += _currChar;
+                    str.Append(_currChar);
 
                 ScanNextChar();
             }
             ScanNextChar();  // read '"'
-            return str;
+            return str.ToString();
         }
 
         /// <summary>

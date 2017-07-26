@@ -921,7 +921,7 @@ namespace MigraDoc.DocumentObjectModel.IO
 
             AssertSymbol(Symbol.BraceLeft);
 
-            // The keyword «\paragraph» is typically ommitted.
+            // The keyword «\paragraph» is typically omitted.
             if (IsParagraphContent())
             {
                 Paragraph paragraph = footnote.Elements.AddParagraph();
@@ -2604,6 +2604,10 @@ namespace MigraDoc.DocumentObjectModel.IO
                         if (skipClosingBraceOrBracket)
                             ReadCode();
                         finish = true;
+                        break;
+
+                    case Symbol.Eof:
+                        ThrowParserException(DomMsgID.UnexpectedEndOfFile);
                         break;
 
                     default:
