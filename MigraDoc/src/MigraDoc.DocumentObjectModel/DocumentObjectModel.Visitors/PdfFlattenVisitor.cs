@@ -137,13 +137,16 @@ namespace MigraDoc.DocumentObjectModel.Visitors
                                 elements.InsertObject(idx + insertedObjects, new Text(" "));
                                 ++insertedObjects;
                                 break;
-
                             case '-': //minus
                                 elements.InsertObject(idx + insertedObjects, new Text(currentString + ch));
                                 ++insertedObjects;
                                 currentString = "";
                                 break;
-
+                            case '\u200C': //zero width space
+                                elements.InsertObject(idx + insertedObjects, new Text(currentString));
+                                ++insertedObjects;
+                                currentString = "";
+                                break;
                             case '­': //soft hyphen
                                 if (currentString != "")
                                 {
