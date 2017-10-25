@@ -142,7 +142,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
                                 ++insertedObjects;
                                 currentString = "";
                                 break;
-                            case '\u200C': //zero width space
+                            case '\u200B': //zero width space
                                 elements.InsertObject(idx + insertedObjects, new Text(currentString));
                                 ++insertedObjects;
                                 currentString = "";
