@@ -4,7 +4,7 @@
 // Authors:
 //   Klaus Potzesny
 //
-// Copyright (c) 2001-2016 empira Software GmbH, Cologne Area (Germany)
+// Copyright (c) 2001-2017 empira Software GmbH, Cologne Area (Germany)
 //
 // http://www.pdfsharp.com
 // http://www.migradoc.com
@@ -289,7 +289,7 @@ namespace MigraDoc.RtfRendering
                     bip.Dispose();
             }
 
-            //Setting defaults in case an error occured.
+            //Setting defaults in case an error occurred.
             _imageFile = null;
             _imageHeight = (Unit)GetValueOrDefault("Height", Unit.FromInch(1));
             _imageWidth = (Unit)GetValueOrDefault("Width", Unit.FromInch(1));

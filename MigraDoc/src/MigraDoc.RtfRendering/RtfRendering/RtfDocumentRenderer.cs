@@ -3,7 +3,7 @@
 // Authors:
 //   Klaus Potzesny
 //
-// Copyright (c) 2001-2016 empira Software GmbH, Cologne Area (Germany)
+// Copyright (c) 2001-2017 empira Software GmbH, Cologne Area (Germany)
 //
 // http://www.pdfsharp.com
 // http://www.migradoc.com
@@ -465,6 +465,7 @@ namespace MigraDoc.RtfRendering
                 return;
 
             _rtfWriter.StartContent();
+            _rtfWriter.WriteControl("f", 2); // Second font is Courier New. See Prepare().
             _rtfWriter.WriteControl("info");
             DocumentInfo info = _document.Info;
             if (!info.IsNull("Title"))

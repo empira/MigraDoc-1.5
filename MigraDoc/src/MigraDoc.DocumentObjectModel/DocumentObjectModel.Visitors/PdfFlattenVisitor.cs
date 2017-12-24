@@ -5,7 +5,7 @@
 //   Klaus Potzesny
 //   David Stephensen
 //
-// Copyright (c) 2001-2016 empira Software GmbH, Cologne Area (Germany)
+// Copyright (c) 2001-2017 empira Software GmbH, Cologne Area (Germany)
 //
 // http://www.pdfsharp.com
 // http://www.migradoc.com
@@ -122,6 +122,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
                     string currentString = "";
                     foreach (char ch in text.Content)
                     {
+                        // TODO Add support for other breaking spaces (en space, em space, &c.).
                         switch (ch)
                         {
                             case ' ':
@@ -138,13 +139,24 @@ namespace MigraDoc.DocumentObjectModel.Visitors
                                 ++insertedObjects;
                                 break;
 
-                            case '-': //minus
+                            case '-': // minus.
                                 elements.InsertObject(idx + insertedObjects, new Text(currentString + ch));
                                 ++insertedObjects;
                                 currentString = "";
                                 break;
 
-                            case '­': //soft hyphen
+                            // Characters that allow line breaks without indication.
+                            case '\u200B': // zero width space.
+                            case '\u200C': // zero width non-joiner.
+                                if (currentString != "")
+                                {
+                                    elements.InsertObject(idx + insertedObjects, new Text(currentString));
+                                    ++insertedObjects;
+                                    currentString = "";
+                                }
+                                break;
+
+                            case '­': // soft hyphen.
                                 if (currentString != "")
                                 {
                                     elements.InsertObject(idx + insertedObjects, new Text(currentString));
@@ -153,7 +165,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
                                 }
                                 elements.InsertObject(idx + insertedObjects, new Text("­"));
                                 ++insertedObjects;
-                                currentString = "";
+                                //currentString = "";
                                 break;
 
                             default:

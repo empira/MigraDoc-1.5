@@ -5,7 +5,7 @@
 //   Klaus Potzesny
 //   David Stephensen
 //
-// Copyright (c) 2001-2016 empira Software GmbH, Cologne Area (Germany)
+// Copyright (c) 2001-2017 empira Software GmbH, Cologne Area (Germany)
 //
 // http://www.pdfsharp.com
 // http://www.migradoc.com
@@ -89,7 +89,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// </summary>
         void INullableValue.SetValue(object value)
         {
-            //REVIEW: Same code in TopPostion/LeftPosition.
+            //REVIEW: Same code in TopPosition/LeftPosition.
             if (value == null)
                 throw new ArgumentNullException("value");
 
@@ -237,7 +237,7 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         #endregion
 
         /// <summary>
-        /// Returns the unitialized LeftPosition object.
+        /// Returns the uninitialized LeftPosition object.
         /// </summary>
         internal static readonly LeftPosition NullValue = new LeftPosition();
     }
