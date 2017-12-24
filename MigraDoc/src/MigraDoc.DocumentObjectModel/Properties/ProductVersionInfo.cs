@@ -112,7 +112,7 @@ namespace MigraDoc
         /// <summary>
         /// The build number of the product.
         /// </summary>
-        public const string VersionBuild = "4619"; // V16G //"4212"; // Also used for NuGet Version.
+        public const string VersionBuild = "4740"; // V16G //"4212"; // Also used for NuGet Version.
 
         /// <summary>
         /// The patch number of the product.
@@ -122,7 +122,7 @@ namespace MigraDoc
         /// <summary>
         /// The Version Prerelease String for NuGet.
         /// </summary>
-        public const string VersionPrerelease = "beta4c"; // "" for stable Release, e.g. "beta" or "rc.1.2" for Prerelease. // Also used for NuGet Version.
+        public const string VersionPrerelease = "beta5"; // "" for stable Release, e.g. "beta" or "rc.1.2" for Prerelease. // Also used for NuGet Version.
 
 #if DEBUG
 // ReSharper disable RedundantNameQualifier
