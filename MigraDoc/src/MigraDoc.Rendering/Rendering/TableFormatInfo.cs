@@ -31,7 +31,7 @@
 using System.Collections.Generic;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.DocumentObjectModel.Visitors;
-using PdfSharp.Drawing;
+using PdfSharper.Drawing;
 
 namespace MigraDoc.Rendering
 {

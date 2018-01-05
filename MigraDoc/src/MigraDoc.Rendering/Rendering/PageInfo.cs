@@ -28,8 +28,8 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
-using PdfSharp;
-using PdfSharp.Drawing;
+using PdfSharper;
+using PdfSharper.Drawing;
 
 namespace MigraDoc.Rendering
 {

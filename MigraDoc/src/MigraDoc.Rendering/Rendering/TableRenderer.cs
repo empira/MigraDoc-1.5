@@ -33,7 +33,7 @@
 using System;
 using System.Collections.Generic;
 using MigraDoc.DocumentObjectModel.Internals;
-using PdfSharp.Drawing;
+using PdfSharper.Drawing;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.DocumentObjectModel.Tables;

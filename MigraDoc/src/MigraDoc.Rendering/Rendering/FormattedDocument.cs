@@ -31,8 +31,8 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using PdfSharp;
-using PdfSharp.Drawing;
+using PdfSharper;
+using PdfSharper.Drawing;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Internals;
 

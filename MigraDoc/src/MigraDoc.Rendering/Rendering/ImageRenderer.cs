@@ -31,7 +31,7 @@
 using System;
 using System.IO;
 using System.Diagnostics;
-using PdfSharp.Drawing;
+using PdfSharper.Drawing;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.Rendering.Resources;
 
