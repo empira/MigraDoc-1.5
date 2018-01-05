@@ -30,7 +30,7 @@
 
 using MigraDoc.DocumentObjectModel.Internals;
 using MigraDoc.DocumentObjectModel.Tables;
-using PdfSharp.Drawing;
+using PdfSharper.Drawing;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
 
@@ -344,7 +344,7 @@ namespace MigraDoc.Rendering
 
         void RenderPlotArea(PlotArea area, Rectangle rect)
         {
-            PdfSharp.Charting.ChartFrame chartFrame = ((ChartFormatInfo)_renderInfo.FormatInfo).ChartFrame;
+            PdfSharper.Charting.ChartFrame chartFrame = ((ChartFormatInfo)_renderInfo.FormatInfo).ChartFrame;
 
             XUnit top = rect.Y;
             top += area.TopPadding;
