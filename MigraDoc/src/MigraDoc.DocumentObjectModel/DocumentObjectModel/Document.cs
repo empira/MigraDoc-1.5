@@ -91,7 +91,7 @@ namespace MigraDoc.DocumentObjectModel
             {
                 throw new InvalidOperationException("The document is already bound to another renderer. " +
                   "A MigraDoc document can be rendered by only one renderer, because the rendering process " +
-                  "modifies its internal structure. If you want to render a MigraDoc document  on different renderers, " +
+                  "modifies its internal structure. If you want to render a MigraDoc document on different renderers, " +
                   "you must create a copy of it using the Clone function.");
             }
             _renderer = renderer;

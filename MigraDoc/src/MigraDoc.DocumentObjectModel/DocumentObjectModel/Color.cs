@@ -272,6 +272,11 @@ namespace MigraDoc.DocumentObjectModel
         /// <summary>
         /// Parses the string and returns a color object.
         /// Throws ArgumentException if color is invalid.
+        /// Supports four different formats for hex colors.
+        /// Format 1: uses prefix "0x", followed by as many hex digits as needed. Important: do not forget the opacity, so use 7 or 8 digits.
+        /// Format 2: uses prefix "#", followed by exactly 8 digits including opacity.
+        /// Format 3: uses prefix "#", followed by exactly 6 digits; opacity will be 0xff.
+        /// Format 4: uses prefix "#", followed by exactly 3 digits; opacity will be 0xff; "#ccc" will be treated as "#ffcccccc", "#d24" will be treated as "#ffdd2244".
         /// </summary>
         /// <param name="color">integer, hex or color name.</param>
         public static Color Parse(string color)
@@ -302,6 +307,26 @@ namespace MigraDoc.DocumentObjectModel
                 {
                     numberStyle = NumberStyles.HexNumber;
                     number = color.Substring(2);
+                }
+                else if (number.StartsWith("#"))
+                {
+                    numberStyle = NumberStyles.HexNumber;
+                    switch (color.Length)
+                    {
+                        case 9:
+                            number = color.Substring(1);
+                            break;
+                        case 7:
+                            number = "ff" + color.Substring(1);
+                            break;
+                        case 4:
+                            number = "ff" + color.Substring(1,1) + color.Substring(1, 1) + 
+                                     color.Substring(2, 1) + color.Substring(2, 1) + 
+                                     color.Substring(3, 1) + color.Substring(3, 1);
+                            break;
+                        default:
+                            throw new ArgumentException(DomSR.InvalidColorString(color), "color");
+                    }
                 }
                 clr = uint.Parse(number, numberStyle);
                 return new Color(clr);

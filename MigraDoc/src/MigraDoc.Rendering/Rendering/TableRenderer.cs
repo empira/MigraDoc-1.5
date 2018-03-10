@@ -136,8 +136,8 @@ namespace MigraDoc.Rendering
                 return;
 
             // Get the borders. By using GV.ReadWrite we create the border, if not existing.
-            Border primaryBorder = (Border) cell.Borders.GetValue(primaryBorderType.ToString(), GV.ReadWrite);
-            Border secondaryBorder = (Border) cell.Borders.GetValue(secondaryBorderType.ToString(), GV.ReadWrite);
+            Border primaryBorder = (Border)cell.Borders.GetValue(primaryBorderType.ToString(), GV.ReadWrite);
+            Border secondaryBorder = (Border)cell.Borders.GetValue(secondaryBorderType.ToString(), GV.ReadWrite);
 
             Border source = primaryBorder.Visible ? primaryBorder
                 : secondaryBorder.Visible ? secondaryBorder : null;
@@ -185,7 +185,7 @@ namespace MigraDoc.Rendering
             // Render horizontal and vertical borders only if touching no rounded corner.
             if (cell.RoundedCorner != RoundedCorner.TopRight && cell.RoundedCorner != RoundedCorner.BottomRight)
                 bordersRenderer.RenderVertically(BorderType.Right, rightPos, topPos, bottomPos + bottomWidth - topPos);
-            
+
             if (cell.RoundedCorner != RoundedCorner.TopLeft && cell.RoundedCorner != RoundedCorner.BottomLeft)
                 bordersRenderer.RenderVertically(BorderType.Left, leftPos - leftWidth, topPos, bottomPos + bottomWidth - topPos);
 
@@ -194,7 +194,7 @@ namespace MigraDoc.Rendering
 
             if (cell.RoundedCorner != RoundedCorner.TopLeft && cell.RoundedCorner != RoundedCorner.TopRight)
                 bordersRenderer.RenderHorizontally(BorderType.Top, leftPos - leftWidth, topPos - topWidth, rightPos + rightWidth + leftWidth - leftPos);
-            
+
             RenderDiagonalBorders(mergedBorders, innerRect);
         }
 
@@ -250,14 +250,33 @@ namespace MigraDoc.Rendering
             else
                 y += CalcMaxTopBorderWidth(0);
 
+#if true
+            // !!!new 18-03-09 Attempt to fix an exception. begin
+            XUnit upperBorderPos;
+            if (!_bottomBorderMap.TryGetValue(cell.Row.Index, out upperBorderPos))
+            {
+                //GetType();
+            }
+            // !!!new 18-03-09 Attempt to fix an exception. end
+#else
             XUnit upperBorderPos = _bottomBorderMap[cell.Row.Index];
+#endif
 
             y += upperBorderPos;
             if (cell.Row.Index > _lastHeaderRow)
                 y -= _bottomBorderMap[_startRow];
 
+#if true
+            // !!!new 18-03-09 Attempt to fix an exception. begin
+            XUnit lowerBorderPos;
+            if (!_bottomBorderMap.TryGetValue(cell.Row.Index + cell.MergeDown + 1, out lowerBorderPos))
+            {
+                //GetType();
+            }
+            // !!!new 18-03-09 Attempt to fix an exception. end
+#else
             XUnit lowerBorderPos = _bottomBorderMap[cell.Row.Index + cell.MergeDown + 1];
-
+#endif
 
             XUnit height = lowerBorderPos - upperBorderPos;
             height -= bordersRenderer.GetWidth(BorderType.Bottom);
@@ -642,11 +661,28 @@ namespace MigraDoc.Rendering
                 if (cell.Row.Index + cell.MergeDown == minMergedCell.Row.Index + minMergedCell.MergeDown)
                 {
                     FormattedCell formattedCell = _formattedCells[cell];
-                    XUnit topBorderPos = _bottomBorderMap[cell.Row.Index];
-                    XUnit bottomBorderPos = topBorderPos + formattedCell.InnerHeight;
-                    bottomBorderPos += CalcBottomBorderWidth(cell);
-                    if (bottomBorderPos > maxBottomBorderPosition)
-                        maxBottomBorderPosition = bottomBorderPos;
+                    // !!!new 18-03-09 Attempt to fix an exception. begin
+                    // if (cell.Row.Index < _bottomBorderMap.Count)
+                    {
+                        // !!!new 18-03-09 Attempt to fix an exception. end
+#if true
+                        // !!!new 18-03-09 Attempt to fix an exception. begin
+                        XUnit topBorderPos = maxBottomBorderPosition;
+                        if (!_bottomBorderMap.TryGetValue(cell.Row.Index, out topBorderPos))
+                        {
+                            //GetType();
+                        }
+                        // !!!new 18-03-09 Attempt to fix an exception. end
+#else
+                        XUnit topBorderPos = _bottomBorderMap[cell.Row.Index];
+#endif
+                        XUnit bottomBorderPos = topBorderPos + formattedCell.InnerHeight;
+                        bottomBorderPos += CalcBottomBorderWidth(cell);
+                        if (bottomBorderPos > maxBottomBorderPosition)
+                            maxBottomBorderPosition = bottomBorderPos;
+                        // !!!new 18-03-09 Attempt to fix an exception. begin
+                    }
+                    // !!!new 18-03-09 Attempt to fix an exception. end
                 }
             }
             _bottomBorderMap.Add(minMergedCell.Row.Index + minMergedCell.MergeDown + 1, maxBottomBorderPosition);
@@ -669,12 +705,38 @@ namespace MigraDoc.Rendering
         }
 
         /// <summary>
-        ///   Gets the first cell in the given row that is merged down minimally.
+        /// Gets the first cell that ends in the given row or as close as possible.
         /// </summary>
-        /// <param name="row"> The row to prope. </param>
-        /// <returns> The first cell with minimal vertical merge. </returns>
+        /// <param name="row">The row to probe.</param>
+        /// <returns>The first cell with minimal vertical merge.</returns>
         private Cell GetMinMergedCell(int row)
         {
+#if true
+            //!!!new 18-03-10 begin
+            // Also look at rows above "row", but only consider cells that end at "row" or as close as possible.
+            int minMerge = _table.Rows.Count;
+            Cell minCell = null;
+            foreach (Cell cell in _mergedCells)
+            {
+                if (cell.Row.Index <= row && cell.Row.Index + cell.MergeDown >= row)
+                {
+                    if (cell.Row.Index == row && cell.MergeDown == 0)
+                    {
+                        // Perfect match: non-merged cell in the desired row.
+                        minCell = cell;
+                        break;
+                    }
+                    else if (cell.Row.Index + cell.MergeDown - row < minMerge)
+                    {
+                        minMerge = cell.Row.Index + cell.MergeDown - row;
+                        minCell = cell;
+                    }
+                }
+                else if (cell.Row.Index > row)
+                    break;
+            }
+            //!!!new 18-03-10 end
+#else
             int minMerge = _table.Rows.Count;
             Cell minCell = null;
             foreach (Cell cell in _mergedCells)
@@ -695,6 +757,7 @@ namespace MigraDoc.Rendering
                 else if (cell.Row.Index > row)
                     break;
             }
+#endif
             return minCell;
         }
 
