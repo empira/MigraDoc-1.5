@@ -96,8 +96,8 @@
     <Compile Include="RtfRendering\TextRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="RtfRendering.Resources\Messages.de.restext" />
-    <None Include="RtfRendering.Resources\Messages.restext" />
+    <EmbeddedResource Include="RtfRendering.Resources\Messages.de.restext" />
+    <EmbeddedResource Include="RtfRendering.Resources\Messages.restext" />
     <None Include="RtfRendering.Resources\PDF.psd" />
     <None Include="StrongnameKey.snk" />
   </ItemGroup>
