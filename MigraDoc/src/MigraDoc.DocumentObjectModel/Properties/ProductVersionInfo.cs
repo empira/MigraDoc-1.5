@@ -85,7 +85,7 @@ namespace MigraDoc
         /// <summary>
         /// The copyright information.
         /// </summary>
-        public const string Copyright = "Copyright © 2001-2017 empira Software GmbH."; // Also used as NuGet Copyright.
+        public const string Copyright = "Copyright © 2001-2019 empira Software GmbH."; // Also used as NuGet Copyright.
 
         /// <summary>
         /// The trademark the product.
@@ -112,7 +112,7 @@ namespace MigraDoc
         /// <summary>
         /// The build number of the product.
         /// </summary>
-        public const string VersionBuild = "4740"; // V16G //"4212"; // Also used for NuGet Version.
+        public const string VersionBuild = "5147"; // V16G //"4212"; // Also used for NuGet Version.
 
         /// <summary>
         /// The patch number of the product.
@@ -122,7 +122,7 @@ namespace MigraDoc
         /// <summary>
         /// The Version Prerelease String for NuGet.
         /// </summary>
-        public const string VersionPrerelease = "beta5"; // "" for stable Release, e.g. "beta" or "rc.1.2" for Prerelease. // Also used for NuGet Version.
+        public const string VersionPrerelease = ""; // "" for stable Release, e.g. "beta" or "rc.1.2" for Prerelease. // Also used for NuGet Version.
 
 #if DEBUG
 // ReSharper disable RedundantNameQualifier
