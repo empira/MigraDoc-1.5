@@ -57,7 +57,7 @@ namespace MigraDoc.RtfRendering
             _rtfWriter.StartContent();
             _rtfWriter.WriteControl("fldinst", true);
             _rtfWriter.WriteText("HYPERLINK ");
-            string name = _hyperlink.Name;
+            string name = _hyperlink.Filename;
             if (_hyperlink.IsNull("Type") || _hyperlink.Type == HyperlinkType.Local)
             {
                 name = BookmarkFieldRenderer.MakeValidBookmarkName(_hyperlink.BookmarkName);

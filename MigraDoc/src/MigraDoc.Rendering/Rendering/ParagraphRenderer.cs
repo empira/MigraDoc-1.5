@@ -1179,15 +1179,15 @@ namespace MigraDoc.Rendering
                                 newWindow = null;
                                 break;
                         }
-                        page.AddDocumentLink(new PdfRectangle(rect), hyperlink.Name, hyperlink.BookmarkName, newWindow);
+                        page.AddDocumentLink(new PdfRectangle(rect), hyperlink.Filename, hyperlink.BookmarkName, newWindow);
                         break;
 
                     case HyperlinkType.Web:
-                        page.AddWebLink(new PdfRectangle(rect), hyperlink.Name);
+                        page.AddWebLink(new PdfRectangle(rect), hyperlink.Filename);
                         break;
 
                     case HyperlinkType.File:
-                        page.AddFileLink(new PdfRectangle(rect), hyperlink.Name);
+                        page.AddFileLink(new PdfRectangle(rect), hyperlink.Filename);
                         break;
                 }
                 _hyperlinkRect = new XRect();

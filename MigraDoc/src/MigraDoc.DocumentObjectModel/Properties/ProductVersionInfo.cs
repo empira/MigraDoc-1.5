@@ -112,7 +112,7 @@ namespace MigraDoc
         /// <summary>
         /// The build number of the product.
         /// </summary>
-        public const string VersionBuild = "5148"; // V16G //"4212"; // Also used for NuGet Version.
+        public const string VersionBuild = "5149"; // V16G //"4212"; // Also used for NuGet Version.
 
         /// <summary>
         /// The patch number of the product.

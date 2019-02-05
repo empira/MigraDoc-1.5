@@ -292,8 +292,9 @@ namespace MigraDoc.DocumentObjectModel
             if (type == HyperlinkType.ExternalBookmark)
                 throw new NotSupportedException("No bookmarkName defined. Please use AddHyperlink(string filename, string bookmarkName, bool? newWindow).");
 
+            // HyperlinkTypes File and Web/Url:
             Hyperlink hyperlink = new Hyperlink();
-            hyperlink.Name = name;
+            hyperlink.Filename = name;
             hyperlink.Type = type;
             Add(hyperlink);
             return hyperlink;
@@ -309,7 +310,7 @@ namespace MigraDoc.DocumentObjectModel
         public Hyperlink AddHyperlink(string filename, string bookmarkName, HyperlinkTargetWindow newWindow = HyperlinkTargetWindow.UserPreference)
         {
             Hyperlink hyperlink = new Hyperlink();
-            hyperlink.Name = filename;
+            hyperlink.Filename = filename;
             hyperlink.BookmarkName = bookmarkName;
             hyperlink.NewWindow = newWindow;
             hyperlink.Type = HyperlinkType.ExternalBookmark;

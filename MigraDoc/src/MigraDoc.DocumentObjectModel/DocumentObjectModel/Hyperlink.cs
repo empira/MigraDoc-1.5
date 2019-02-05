@@ -58,10 +58,10 @@ namespace MigraDoc.DocumentObjectModel
         /// Initializes a new instance of the Hyperlink class with the text the hyperlink shall content.
         /// The type will be treated as Local by default.
         /// </summary>
-        internal Hyperlink(string name, string text)
+        internal Hyperlink(string bookmarkName, string text)
             : this()
         {
-            Name = name;
+            BookmarkName = bookmarkName;
             Elements.AddText(text);
         }
 
@@ -69,10 +69,11 @@ namespace MigraDoc.DocumentObjectModel
         /// Initializes a new instance of the Hyperlink class with the type and text the hyperlink shall
         /// represent.
         /// </summary>
-        internal Hyperlink(string name, HyperlinkType type, string text)
+        internal Hyperlink(string bookmarkName, string filename, HyperlinkType type, string text)
             : this()
         {
-            Name = name;
+            BookmarkName = bookmarkName;
+            Filename = filename;
             Type = type;
             Elements.AddText(text);
         }
@@ -447,20 +448,60 @@ namespace MigraDoc.DocumentObjectModel
         internal Font _font;
 
         /// <summary>
-        /// Gets or sets the target filename of the Hyperlink, e.g. a path to a file or an URL.
-        /// Used for HyperlinkTypes ExternalBookmark, File and Url/Web.
+        /// For HyperlinkType Local/Bookmark: Gets or sets the target bookmark name of the Hyperlink.
+        /// For HyperlinkTypes File and Url/Web: Gets or sets the target filename of the Hyperlink, e.g. a path to a file or an URL.
+        /// For HyperlinkType ExternalBookmark: Not valid - throws Exception.
+        /// This property is retained due to compatibility reasons.
         /// </summary>
         public string Name
         {
-            get { return _name.Value; }
-            set { _name.Value = value; }
+            get
+            {
+                switch (Type)
+                {
+                    case HyperlinkType.ExternalBookmark:
+                        throw new InvalidOperationException("For HyperlinkType ExternalBookmark Filename and BookmarkName must be set. Use these properties instead.");
+                    case HyperlinkType.File:
+                    case HyperlinkType.Url:
+                        return _filename.Value;
+                    default:
+                    // case HyperlinkType.Bookmark:
+                        return _bookmarkName.Value;
+                }
+            }
+            set
+            {
+                switch (Type)
+                {
+                    case HyperlinkType.ExternalBookmark:
+                        throw new InvalidOperationException("For HyperlinkType ExternalBookmark Filename and BookmarkName must be set. Use these properties instead.");
+                    case HyperlinkType.File:
+                    case HyperlinkType.Url:
+                        _filename.Value = value;
+                        break;
+                    default:
+                        // case HyperlinkType.Bookmark:
+                        _bookmarkName.Value = value;
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the target filename of the Hyperlink, e.g. a path to a file or an URL.
+        /// Used for HyperlinkTypes ExternalBookmark, File and Url/Web.
+        /// </summary>
+        public string Filename
+        {
+            get { return _filename.Value; }
+            set { _filename.Value = value; }
         }
         [DV]
-        internal NString _name = NString.NullValue;
+        internal NString _filename = NString.NullValue;
 
         /// <summary>
         /// Gets or sets the target bookmark name of the Hyperlink.
-        ///Used for HyperlinkTypes ExternalBookmark and Bookmark.
+        /// Used for HyperlinkTypes ExternalBookmark and Bookmark.
         /// </summary>
         public string BookmarkName
         {
@@ -488,7 +529,23 @@ namespace MigraDoc.DocumentObjectModel
         public HyperlinkType Type
         {
             get { return (HyperlinkType)_type.Value; }
-            set { _type.Value = (int)value; }
+            set
+            {
+                switch (value)
+                {
+                    case HyperlinkType.File:
+                    case HyperlinkType.Url:
+                        if (!string.IsNullOrEmpty(_bookmarkName.Value) && string.IsNullOrEmpty(_filename.Value))
+                            throw new InvalidOperationException("For HyperlinkTypes File and Web/Url Filename must be set instead of BookmarkName.");
+                        break;
+                    case HyperlinkType.Bookmark:
+                        if (!string.IsNullOrEmpty(_filename.Value) && string.IsNullOrEmpty(_bookmarkName.Value))
+                            throw new InvalidOperationException("For HyperlinkType Local/Bookmark BookmarkName must be set instead of Filename.");
+                        break;
+                }
+
+                _type.Value = (int)value;
+            }
         }
         [DV(Type = typeof(HyperlinkType))]
         internal NEnum _type = NEnum.NullValue(typeof(HyperlinkType));
@@ -520,10 +577,10 @@ namespace MigraDoc.DocumentObjectModel
 
             if (Type == HyperlinkType.ExternalBookmark || Type == HyperlinkType.File || Type == HyperlinkType.Url)
             {
-            if (_name.Value == string.Empty)
-                    throw new InvalidOperationException(DomSR.MissingObligatoryProperty("Name", $"Hyperlink {Type.ToString()}"));
+                if (_filename.Value == string.Empty)
+                    throw new InvalidOperationException(DomSR.MissingObligatoryProperty("Filename", $"Hyperlink {Type.ToString()}"));
                 
-                str += " Name = \"" + Name.Replace("\\", "\\\\").Replace("\"", "\\\"") + "\"";
+                str += " Filename = \"" + Filename.Replace("\\", "\\\\").Replace("\"", "\\\"") + "\"";
             }
             if (Type == HyperlinkType.ExternalBookmark || Type == HyperlinkType.Bookmark)
             {
