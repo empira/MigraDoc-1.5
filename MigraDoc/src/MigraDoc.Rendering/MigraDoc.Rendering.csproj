@@ -11,6 +11,10 @@
     <AssemblyName>MigraDoc.Rendering</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -119,9 +123,9 @@
       <Project>{6f98a822-41b0-4c7a-85a6-e95c1d3e88ef}</Project>
       <Name>PdfSharp.Charting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp\PDFsharp.csproj">
+    <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp\PdfSharp.csproj">
       <Project>{5a6055bc-bf86-4fdd-9f62-0109db7a303b}</Project>
-      <Name>PDFsharp</Name>
+      <Name>PdfSharp</Name>
     </ProjectReference>
     <ProjectReference Include="..\MigraDoc.DocumentObjectModel\MigraDoc.DocumentObjectModel.csproj">
       <Project>{6318a852-ef6b-486f-8547-3d7e736d7943}</Project>

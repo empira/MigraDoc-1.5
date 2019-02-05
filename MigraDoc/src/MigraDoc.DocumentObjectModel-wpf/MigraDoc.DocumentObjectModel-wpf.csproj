@@ -44,6 +44,10 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -464,6 +468,9 @@
     </Compile>
     <Compile Include="..\MigraDoc.DocumentObjectModel\DocumentObjectModel\enums\HeaderFooterIndex.cs">
       <Link>DocumentObjectModel\enums\HeaderFooterIndex.cs</Link>
+    </Compile>
+    <Compile Include="..\MigraDoc.DocumentObjectModel\DocumentObjectModel\enums\HyperlinkTargetWindow.cs">
+      <Link>DocumentObjectModel\enums\HyperlinkTargetWindow.cs</Link>
     </Compile>
     <Compile Include="..\MigraDoc.DocumentObjectModel\DocumentObjectModel\enums\HyperlinkType.cs">
       <Link>DocumentObjectModel\enums\HyperlinkType.cs</Link>

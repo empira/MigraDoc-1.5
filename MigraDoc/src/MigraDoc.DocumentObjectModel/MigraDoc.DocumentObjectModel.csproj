@@ -11,6 +11,10 @@
     <AssemblyName>MigraDoc.DocumentObjectModel</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -170,6 +174,7 @@
     <Compile Include="DocumentObjectModel\enums\OutlineLevel.cs" />
     <Compile Include="DocumentObjectModel\enums\PageFormat.cs" />
     <Compile Include="DocumentObjectModel\enums\ParagraphAlignment.cs" />
+    <Compile Include="DocumentObjectModel\enums\HyperlinkTargetWindow.cs" />
     <Compile Include="DocumentObjectModel\enums\StyleType.cs" />
     <Compile Include="DocumentObjectModel\enums\SymbolName.cs" />
     <Compile Include="DocumentObjectModel\enums\TabAlignment.cs" />

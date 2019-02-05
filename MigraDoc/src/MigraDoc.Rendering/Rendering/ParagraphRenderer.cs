@@ -38,6 +38,7 @@ using PdfSharp.Drawing;
 using MigraDoc.DocumentObjectModel.Fields;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.Rendering.Resources;
+using PdfSharp.Pdf.Advanced;
 
 namespace MigraDoc.Rendering
 {
@@ -131,7 +132,7 @@ namespace MigraDoc.Rendering
         {
             InitRendering();
             if ((int)_paragraph.Format.OutlineLevel >= 1 && _gfx.PdfPage != null) // Don't call GetOutlineTitle() in vain
-                _documentRenderer.AddOutline((int)_paragraph.Format.OutlineLevel, GetOutlineTitle(), _gfx.PdfPage);
+                _documentRenderer.AddOutline((int)_paragraph.Format.OutlineLevel, GetOutlineTitle(), _gfx.PdfPage, GetDestinationPosition());
 
             RenderShading();
             RenderBorders();
@@ -847,7 +848,7 @@ namespace MigraDoc.Rendering
                     break;
 
                 case "BookmarkField":
-                    RenderBookmarkField();
+                    RenderBookmarkField((BookmarkField)docObj);
                     break;
 
                 case "PageRefField":
@@ -906,9 +907,37 @@ namespace MigraDoc.Rendering
             RenderWord(GetFieldValue(sectionPagesField));
         }
 
-        void RenderBookmarkField()
+        void RenderBookmarkField(BookmarkField bookmarkField)
         {
+            // Add also a named destination, if a PdfDocument is rendered.
+            var pdfDocument = _gfx.PdfPage.Owner;
+            if (pdfDocument != null)
+            {
+                var pageNr = pdfDocument.PageCount; // Magic: Pages are added while rendering, so the current page number equals pdfDocument.PageCount.
+                Debug.Assert(pageNr >= 1);
+
+                var destinationName = bookmarkField.Name;
+                var position = GetDestinationPosition();
+                pdfDocument.AddNamedDestination(destinationName, pageNr, PdfNamedDestinationParameters.CreatePosition(position));
+            }
+
             RenderUnderline(0, false);
+        }
+
+        /// <summary>
+        /// Gets the current position for destinations in PDF world space units.
+        /// The position is moved by a margin value to leave space between the window and the content that is located at the destination
+        /// and it is transformed to PDF world space units.
+        /// </summary>
+        XPoint GetDestinationPosition()
+        {
+            var margin = XUnit.FromCentimeter(0.5);
+            var x = _currentXPosition > margin ? _currentXPosition - margin : 0;
+            var y = _currentYPosition > margin ? _currentYPosition - margin : 0;
+            var destinationPosition = new XPoint(x, y);
+
+            var pdfPosition = _gfx.Transformer.WorldToDefaultPage(destinationPosition);
+            return pdfPosition;
         }
 
         void RenderPageRefField(PageRefField pageRefField)
@@ -1118,9 +1147,39 @@ namespace MigraDoc.Rendering
                 switch (hyperlink.Type)
                 {
                     case HyperlinkType.Local:
-                        int pageRef = _fieldInfos.GetPhysicalPageNumber(hyperlink.Name);
+
+                        // Try to use named destination, if a document is rendered.
+                        var pdfDocument = _gfx.PdfPage.Owner;
+                        if (pdfDocument != null)
+                        {
+                            page.AddDocumentLink(new PdfRectangle(rect), hyperlink.BookmarkName);
+                        }
+                        // Otherwise use page from bookmarks's fieldInfo.
+                        else
+                        {
+                            var pageRef = _fieldInfos.GetPhysicalPageNumber(hyperlink.BookmarkName);
                         if (pageRef > 0)
                             page.AddDocumentLink(new PdfRectangle(rect), pageRef);
+                        }
+                        break;
+
+                    case HyperlinkType.ExternalBookmark:
+
+                        bool? newWindow;
+                        switch (hyperlink.NewWindow)
+                        {
+                            case HyperlinkTargetWindow.NewWindow:
+                                newWindow = true;
+                                break;
+                            case HyperlinkTargetWindow.SameWindow:
+                                newWindow = false;
+                                break;
+                            case HyperlinkTargetWindow.UserPreference:
+                            default:
+                                newWindow = null;
+                                break;
+                        }
+                        page.AddDocumentLink(new PdfRectangle(rect), hyperlink.Name, hyperlink.BookmarkName, newWindow);
                         break;
 
                     case HyperlinkType.Web:

@@ -220,16 +220,15 @@ namespace MigraDoc.DocumentObjectModel
         }
 
         /// <summary>
-        /// Adds a new Hyperlink of Type "Local", 
-        /// i.e. the Target is a Bookmark within the Document
+        /// Adds a new Hyperlink of Type "Local", i.e. the target is a Bookmark within the Document.
         /// </summary>
-        public Hyperlink AddHyperlink(string name)
+        public Hyperlink AddHyperlink(string bookmarkName)
         {
-            return Elements.AddHyperlink(name);
+            return Elements.AddHyperlink(bookmarkName);
         }
 
         /// <summary>
-        /// Adds a new Hyperlink
+        /// Adds a new Hyperlink.
         /// </summary>
         public Hyperlink AddHyperlink(string name, HyperlinkType type)
         {
@@ -237,11 +236,25 @@ namespace MigraDoc.DocumentObjectModel
         }
 
         /// <summary>
+        /// Adds a new Hyperlink of Type "ExternalBookmark", i.e. the target is a Bookmark in an external PDF Document.
+        /// </summary>
+        /// <param name="filename">The path to the target document.</param>
+        /// <param name="bookmarkName">The Named Destination's name in the target document.</param>
+        /// <param name="newWindow">Defines if the HyperlinkType ExternalBookmark shall be opened in a new window.
+        /// If not set, the viewer application should behave in accordance with the current user preference.</param>
+        public Hyperlink AddHyperlink(string filename, string bookmarkName, HyperlinkTargetWindow newWindow = HyperlinkTargetWindow.UserPreference)
+        {
+            return Elements.AddHyperlink(filename, bookmarkName, newWindow);
+        }
+
+        /// <summary>
         /// Adds a new Bookmark.
         /// </summary>
-        public BookmarkField AddBookmark(string name)
+        /// <param name="name">The name of the bookmark.</param>
+        /// <param name="prepend">True, if the bookmark shall be inserted at the beginning of the paragraph.</param>
+        public BookmarkField AddBookmark(string name, bool prepend = true)
         {
-            return Elements.AddBookmark(name);
+            return Elements.AddBookmark(name, prepend);
         }
 
         /// <summary>

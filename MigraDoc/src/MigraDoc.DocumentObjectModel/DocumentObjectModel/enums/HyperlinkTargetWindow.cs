@@ -33,39 +33,23 @@
 namespace MigraDoc.DocumentObjectModel
 {
     /// <summary>
-    /// Specifies the target of the hyperlink.
+    /// Specifies the target window a Hyperlink shall open an external PDF in.
     /// </summary>
-    public enum HyperlinkType
+    public enum HyperlinkTargetWindow
     {
         /// <summary>
-        /// Targets a position in the document. Same as 'Bookmark'.
+        /// The viewer application should behave in accordance with the current user preference.
         /// </summary>
-        Local = 0,
+        UserPreference,
 
         /// <summary>
-        /// Targets a position in the document. Same as 'Local'.
+        /// The destination document replaces the current document in the same window.
         /// </summary>
-        Bookmark = Local,
+        SameWindow,
 
         /// <summary>
-        /// Targets a position in another PDF document.
-        /// This is only supported in PDF. In RTF the other document is opened, but the target position is not moved to.
+        /// Opens the destination document in a new window.
         /// </summary>
-        ExternalBookmark,
-
-        /// <summary>
-        /// Targets a resource on the Internet or network. Same as 'Url'.
-        /// </summary>
-        Web,
-
-        /// <summary>
-        /// Targets a resource on the Internet or network. Same as 'Web'.
-        /// </summary>
-        Url = Web,
-
-        /// <summary>
-        /// Targets a physical file.
-        /// </summary>
-        File
+        NewWindow
     }
 }

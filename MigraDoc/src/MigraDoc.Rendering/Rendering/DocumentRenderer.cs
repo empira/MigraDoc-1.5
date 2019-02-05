@@ -308,7 +308,7 @@ namespace MigraDoc.Rendering
 #endif
         }
 
-        internal void AddOutline(int level, string title, PdfPage destinationPage)
+        internal void AddOutline(int level, string title, PdfPage destinationPage, XPoint position)
         {
             if (level < 1 || destinationPage == null)
                 return;
@@ -325,13 +325,21 @@ namespace MigraDoc.Rendering
                 if (count == 0)
                 {
                     // You cannot add empty bookmarks to PDF. So we use blank here.
-                    PdfOutline outline = outlines.Add(" ", destinationPage, true);
+                    var outline = AddOutline(outlines, " ", destinationPage, position);
                     outlines = outline.Outlines;
                 }
                 else
                     outlines = outlines[count - 1].Outlines;
             }
-            outlines.Add(title, destinationPage, true);
+            AddOutline(outlines, title, destinationPage, position);
+        }
+
+        private PdfOutline AddOutline(PdfOutlineCollection outlines, string title, PdfPage destinationPage, XPoint position)
+        {
+            var outline = outlines.Add(title, destinationPage, true);
+            outline.Left = position.X;
+            outline.Top = position.Y;
+            return outline;
         }
 
         internal int NextListNumber(ListInfo listInfo)

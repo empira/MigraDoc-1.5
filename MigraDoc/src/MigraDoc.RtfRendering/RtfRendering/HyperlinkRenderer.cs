@@ -60,10 +60,10 @@ namespace MigraDoc.RtfRendering
             string name = _hyperlink.Name;
             if (_hyperlink.IsNull("Type") || _hyperlink.Type == HyperlinkType.Local)
             {
-                name = BookmarkFieldRenderer.MakeValidBookmarkName(_hyperlink.Name);
+                name = BookmarkFieldRenderer.MakeValidBookmarkName(_hyperlink.BookmarkName);
                 _rtfWriter.WriteText(@"\l ");
             }
-            else if (_hyperlink.Type == HyperlinkType.File)
+            else if (_hyperlink.Type == HyperlinkType.File || _hyperlink.Type == HyperlinkType.ExternalBookmark) // Open at least the document for external bookmarks (in PDF: Links to external named destinations).
             {
                 string workingDirectory = _docRenderer.WorkingDirectory;
                 if (workingDirectory != null)

@@ -157,11 +157,11 @@ namespace MigraDoc.DocumentObjectModel
 
         /// <summary>
         /// Returns the part of the string str that fits into the line (up to 80 chars).
-        /// If Wordwrap is impossible it returns the input-string str itself.
+        /// If wordwrap is impossible it returns the input-string str itself.
         /// </summary>
         string DoWordWrap(string str)
         {
-            if (str.Length + _writeIndent < LineBreakBeyond)
+            if (str.Length + _writeIndent <= LineBreakBeyond)
                 return str;
 
             int idxCRLF = str.IndexOf("\x0D\x0A", StringComparison.Ordinal);

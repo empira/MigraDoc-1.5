@@ -271,21 +271,27 @@ namespace MigraDoc.DocumentObjectModel
         }
 
         /// <summary>
-        /// Adds a new Hyperlink of Type "Local", i.e. the Target is a Bookmark within the Document
+        /// Adds a new Hyperlink of Type "Local", i.e. the target is a Bookmark within the Document.
         /// </summary>
-        public Hyperlink AddHyperlink(string name)
+        public Hyperlink AddHyperlink(string bookmarkName)
         {
             Hyperlink hyperlink = new Hyperlink();
-            hyperlink.Name = name;
+            hyperlink.BookmarkName = bookmarkName;
             Add(hyperlink);
             return hyperlink;
         }
 
         /// <summary>
-        /// Adds a new Hyperlink
+        /// Adds a new Hyperlink.
         /// </summary>
         public Hyperlink AddHyperlink(string name, HyperlinkType type)
         {
+            if (type == HyperlinkType.Bookmark)
+                return AddHyperlink(name);
+            
+            if (type == HyperlinkType.ExternalBookmark)
+                throw new NotSupportedException("No bookmarkName defined. Please use AddHyperlink(string filename, string bookmarkName, bool? newWindow).");
+
             Hyperlink hyperlink = new Hyperlink();
             hyperlink.Name = name;
             hyperlink.Type = type;
@@ -294,12 +300,35 @@ namespace MigraDoc.DocumentObjectModel
         }
 
         /// <summary>
+        /// Adds a new Hyperlink of Type "ExternalBookmark", i.e. the target is a Bookmark in an external PDF Document.
+        /// </summary>
+        /// <param name="filename">The path to the target document.</param>
+        /// <param name="bookmarkName">The Named Destination's name in the target document.</param>
+        /// <param name="newWindow">Defines if the HyperlinkType ExternalBookmark shall be opened in a new window.
+        /// If not set, the viewer application should behave in accordance with the current user preference.</param>
+        public Hyperlink AddHyperlink(string filename, string bookmarkName, HyperlinkTargetWindow newWindow = HyperlinkTargetWindow.UserPreference)
+        {
+            Hyperlink hyperlink = new Hyperlink();
+            hyperlink.Name = filename;
+            hyperlink.BookmarkName = bookmarkName;
+            hyperlink.NewWindow = newWindow;
+            hyperlink.Type = HyperlinkType.ExternalBookmark;
+            Add(hyperlink);
+            return hyperlink;
+        }
+
+        /// <summary>
         /// Adds a new Bookmark.
         /// </summary>
-        public BookmarkField AddBookmark(string name)
+        /// <param name="name">The name of the bookmark.</param>
+        /// <param name="prepend">True, if the bookmark shall be inserted at the beginning of the paragraph.</param>
+        public BookmarkField AddBookmark(string name, bool prepend = true)
         {
             BookmarkField fieldBookmark = new BookmarkField();
             fieldBookmark.Name = name;
+            if (prepend)
+                InsertObject(0, fieldBookmark);
+            else
             Add(fieldBookmark);
             return fieldBookmark;
         }
