@@ -118,7 +118,7 @@ namespace MigraDoc.DocumentObjectModel.Tables
         /// </summary>
         public Row AddRow()
         {
-            return _rows.AddRow();
+            return Rows.AddRow();
         }
 
         /// <summary>
