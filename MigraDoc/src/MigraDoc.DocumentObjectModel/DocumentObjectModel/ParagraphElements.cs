@@ -289,8 +289,10 @@ namespace MigraDoc.DocumentObjectModel
             if (type == HyperlinkType.Bookmark)
                 return AddHyperlink(name);
             
-            if (type == HyperlinkType.ExternalBookmark)
-                throw new NotSupportedException("No bookmarkName defined. Please use AddHyperlink(string filename, string bookmarkName, bool? newWindow).");
+            if (type == HyperlinkType.ExternalBookmark || type == HyperlinkType.EmbeddedDocument)
+                throw new NotSupportedException("No bookmarkName defined. " +
+                                                "Please use AddHyperlink(string filename, string bookmarkName, bool? newWindow) " +
+                                                "or one of the AddHyperlinkToEmbeddedDocument() functions.");
 
             // HyperlinkTypes File and Web/Url:
             Hyperlink hyperlink = new Hyperlink();
@@ -314,6 +316,43 @@ namespace MigraDoc.DocumentObjectModel
             hyperlink.BookmarkName = bookmarkName;
             hyperlink.NewWindow = newWindow;
             hyperlink.Type = HyperlinkType.ExternalBookmark;
+            Add(hyperlink);
+            return hyperlink;
+        }
+
+        /// <summary>
+        /// Adds a new Hyperlink of Type "EmbeddedDocument".
+        /// The target is a Bookmark in an embedded Document in this Document.
+        /// </summary>
+        /// <param name="destinationPath">The path to the named destination through the embedded documents.
+        /// The path is separated by '\' and the last segment is the name of the named destination.
+        /// The other segments describe the route from the current (root or embedded) document to the embedded document holding the destination.
+        /// ".." references to the parent, other strings refer to a child with this name in the EmbeddedFiles name dictionary.</param>
+        /// <param name="newWindow">Defines if the HyperlinkType ExternalBookmark shall be opened in a new window.
+        /// If not set, the viewer application should behave in accordance with the current user preference.</param>
+        public Hyperlink AddHyperlinkToEmbeddedDocument(string destinationPath, HyperlinkTargetWindow newWindow = HyperlinkTargetWindow.UserPreference)
+        {
+            return AddHyperlinkToEmbeddedDocument(null, destinationPath, newWindow);
+        }
+
+        /// <summary>
+        /// Adds a new Hyperlink of Type "EmbeddedDocument".
+        /// The target is a Bookmark in an embedded Document in an external PDF Document.
+        /// </summary>
+        /// <param name="filename">The path to the target document.</param>
+        /// <param name="destinationPath">The path to the named destination through the embedded documents in the target document.
+        /// The path is separated by '\' and the last segment is the name of the named destination.
+        /// The other segments describe the route from the root document to the embedded document.
+        /// Each segment name refers to a child with this name in the EmbeddedFiles name dictionary.</param>
+        /// <param name="newWindow">Defines if the HyperlinkType ExternalBookmark shall be opened in a new window.
+        /// If not set, the viewer application should behave in accordance with the current user preference.</param>
+        public Hyperlink AddHyperlinkToEmbeddedDocument(string filename, string destinationPath, HyperlinkTargetWindow newWindow = HyperlinkTargetWindow.UserPreference)
+        {
+            Hyperlink hyperlink = new Hyperlink();
+            hyperlink.Name = filename;
+            hyperlink.BookmarkName = destinationPath;
+            hyperlink.NewWindow = newWindow;
+            hyperlink.Type = HyperlinkType.EmbeddedDocument;
             Add(hyperlink);
             return hyperlink;
         }

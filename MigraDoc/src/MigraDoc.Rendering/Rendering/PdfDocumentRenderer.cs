@@ -186,6 +186,12 @@ namespace MigraDoc.Rendering
                     _pdfDocument.Options.ColorMode = PdfColorMode.Cmyk;
             }
 
+            // Add embedded files, that are defined in MigraDoc _document to PDFsharp _pdfDocument.
+            foreach (EmbeddedFile embeddedFile in _document.EmbeddedFiles)
+            {
+                _pdfDocument.AddEmbeddedFile(embeddedFile.Name, embeddedFile.Path);
+            }
+
             WriteDocumentInformation();
             //RenderPages(1, this.documentRenderer.FormattedDocument.PageCount);
         }

@@ -45,6 +45,7 @@ namespace MigraDoc.DocumentObjectModel.IO
 
             EnumToName.Add(Symbol.Styles, @"\styles");
             EnumToName.Add(Symbol.Document, @"\document");
+            EnumToName.Add(Symbol.EmbeddedFile, @"\EmbeddedFile");
             EnumToName.Add(Symbol.Section, @"\section");
             EnumToName.Add(Symbol.Paragraph, @"\paragraph");
             EnumToName.Add(Symbol.Header, @"\header");
@@ -138,6 +139,7 @@ namespace MigraDoc.DocumentObjectModel.IO
             //
             NameToEnum.Add(@"\styles", Symbol.Styles);
             NameToEnum.Add(@"\document", Symbol.Document);
+            NameToEnum.Add(@"\EmbeddedFile", Symbol.EmbeddedFile);
             NameToEnum.Add(@"\section", Symbol.Section);
             NameToEnum.Add(@"\paragraph", Symbol.Paragraph);
             NameToEnum.Add(@"\header", Symbol.Header);

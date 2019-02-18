@@ -1,4 +1,4 @@
-#region MigraDoc - Creating Documents on the Fly
+﻿#region MigraDoc - Creating Documents on the Fly
 //
 // Authors:
 //   Stefan Lange
@@ -30,48 +30,61 @@
 // DEALINGS IN THE SOFTWARE.
 #endregion
 
+using MigraDoc.DocumentObjectModel.Internals;
+
 namespace MigraDoc.DocumentObjectModel
 {
     /// <summary>
-    /// Specifies the target of the hyperlink.
+    /// Represents the collection of embedded files.
     /// </summary>
-    public enum HyperlinkType
+    public class EmbeddedFiles : DocumentObjectCollection
     {
         /// <summary>
-        /// Targets a position in the document. Same as 'Bookmark'.
+        /// Initializes a new instance of the EmbeddedFiles class.
         /// </summary>
-        Local = 0,
+        public EmbeddedFiles()
+        { }
 
         /// <summary>
-        /// Targets a position in the document. Same as 'Local'.
+        /// Gets an embedded file by its index. First embedded file has index 0.
         /// </summary>
-        Bookmark = Local,
+        public new EmbeddedFile this[int index] => base[index] as EmbeddedFile;
+
+        #region Methods
 
         /// <summary>
-        /// Targets a position in another PDF document.
-        /// This is only supported in PDF. In RTF the other document is opened, but the target position is not moved to.
+        /// Adds a new EmbeddedFile.
         /// </summary>
-        ExternalBookmark,
+        /// <param name="name">The name used to refer and to entitle the embedded file.</param>
+        /// <param name="path">The path of the file to embed.</param>
+        public EmbeddedFile Add(string name, string path)
+        {
+            var section = new EmbeddedFile(name, path);
+            Add(section);
+            return section;
+        }
+        #endregion
+
+        #region Internal
+        /// <summary>
+        /// Converts Sections into DDL.
+        /// </summary>
+        internal override void Serialize(Serializer serializer)
+        {
+            var count = Count;
+            for (var index = 0; index < count; ++index)
+            {
+                var embeddedFile = this[index];
+                embeddedFile.Serialize(serializer);
+            }
+        }
 
         /// <summary>
-        /// Targets a position in an embedded document in this or another root PDF document.
-        /// This is only supported in PDF.
+        /// Returns the meta object of this instance.
         /// </summary>
-        EmbeddedDocument,
+        internal override Meta Meta => _meta ?? (_meta = new Meta(typeof(EmbeddedFiles)));
 
-        /// <summary>
-        /// Targets a resource on the Internet or network. Same as 'Url'.
-        /// </summary>
-        Web,
-
-        /// <summary>
-        /// Targets a resource on the Internet or network. Same as 'Web'.
-        /// </summary>
-        Url = Web,
-
-        /// <summary>
-        /// Targets a physical file.
-        /// </summary>
-        File
+        static Meta _meta;
+        #endregion
     }
 }

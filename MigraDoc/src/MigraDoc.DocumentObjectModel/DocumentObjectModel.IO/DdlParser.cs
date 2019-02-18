@@ -76,9 +76,11 @@ namespace MigraDoc.DocumentObjectModel.IO
                 ParseAttributes(document);
 
             AssertSymbol(Symbol.BraceLeft);
-
-            // Styles come first
             ReadCode();
+            
+            while (Symbol == Symbol.EmbeddedFile)
+                ParseEmbeddedFiles(document.EmbeddedFiles);
+
             if (Symbol == Symbol.Styles)
                 ParseStyles(document.Styles);
 
@@ -106,6 +108,10 @@ namespace MigraDoc.DocumentObjectModel.IO
             {
                 case Symbol.Document:
                     obj = ParseDocument(null);
+                    break;
+
+                case Symbol.EmbeddedFile:
+                    obj = ParseEmbeddedFiles(new EmbeddedFiles());
                     break;
 
                 case Symbol.Styles:
@@ -249,6 +255,33 @@ namespace MigraDoc.DocumentObjectModel.IO
               sym == Symbol.PrimaryHeader || sym == Symbol.PrimaryFooter ||
               sym == Symbol.EvenPageHeader || sym == Symbol.EvenPageFooter ||
               sym == Symbol.FirstPageHeader || sym == Symbol.FirstPageFooter);
+        }
+
+        /// <summary>
+        /// Parses the keyword «\EmbeddedFiles».
+        /// </summary>
+        private EmbeddedFiles ParseEmbeddedFiles(EmbeddedFiles embeddedFiles)
+        {
+            Debug.Assert(embeddedFiles != null);
+
+            MoveToCode();
+            AssertSymbol(Symbol.EmbeddedFile);
+
+            try
+            {
+                var embeddedFile = new EmbeddedFile();
+                
+                ReadCode(); // read '['
+                ParseAttributes(embeddedFile);
+
+                embeddedFiles.Add(embeddedFile);
+            }
+            catch (DdlParserException ex)
+            {
+                ReportParserException(ex);
+                AdjustToNextBlock();
+            }
+            return embeddedFiles;
         }
 
         /// <summary>

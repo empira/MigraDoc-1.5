@@ -582,14 +582,14 @@ namespace MigraDoc.DocumentObjectModel
                 
                 str += " Filename = \"" + Filename.Replace("\\", "\\\\").Replace("\"", "\\\"") + "\"";
             }
-            if (Type == HyperlinkType.ExternalBookmark || Type == HyperlinkType.Bookmark)
+            if (Type == HyperlinkType.ExternalBookmark || Type == HyperlinkType.Bookmark || Type == HyperlinkType.EmbeddedDocument)
             {
                 if (_bookmarkName.Value == string.Empty)
                     throw new InvalidOperationException(DomSR.MissingObligatoryProperty("BookmarkName", $"Hyperlink {Type.ToString()}"));
 
                 str += " BookmarkName = \"" + BookmarkName.Replace("\\", "\\\\").Replace("\"", "\\\"") + "\"";
             }
-            if (Type == HyperlinkType.ExternalBookmark)
+            if (Type == HyperlinkType.ExternalBookmark || Type == HyperlinkType.EmbeddedDocument)
             {
                 str += " NewWindow = " + NewWindow;
             }

@@ -1164,22 +1164,11 @@ namespace MigraDoc.Rendering
                         break;
 
                     case HyperlinkType.ExternalBookmark:
+                        page.AddDocumentLink(new PdfRectangle(rect), hyperlink.Filename, hyperlink.BookmarkName, ConvertHyperlinkTargetWindow(hyperlink.NewWindow));
+                        break;
 
-                        bool? newWindow;
-                        switch (hyperlink.NewWindow)
-                        {
-                            case HyperlinkTargetWindow.NewWindow:
-                                newWindow = true;
-                                break;
-                            case HyperlinkTargetWindow.SameWindow:
-                                newWindow = false;
-                                break;
-                            case HyperlinkTargetWindow.UserPreference:
-                            default:
-                                newWindow = null;
-                                break;
-                        }
-                        page.AddDocumentLink(new PdfRectangle(rect), hyperlink.Filename, hyperlink.BookmarkName, newWindow);
+                    case HyperlinkType.EmbeddedDocument:
+                        page.AddEmbeddedDocumentLink(new PdfRectangle(rect), hyperlink.Filename, hyperlink.BookmarkName, ConvertHyperlinkTargetWindow(hyperlink.NewWindow));
                         break;
 
                     case HyperlinkType.Web:
@@ -1191,6 +1180,20 @@ namespace MigraDoc.Rendering
                         break;
                 }
                 _hyperlinkRect = new XRect();
+            }
+        }
+
+        bool? ConvertHyperlinkTargetWindow(HyperlinkTargetWindow hyperlinkTargetWindow)
+        {
+            switch (hyperlinkTargetWindow)
+            {
+                case HyperlinkTargetWindow.NewWindow:
+                    return true;
+                case HyperlinkTargetWindow.SameWindow:
+                    return false;
+                case HyperlinkTargetWindow.UserPreference:
+                default:
+                    return null;
             }
         }
 

@@ -94,6 +94,7 @@ namespace MigraDoc.DocumentObjectModel.IO
         // TokenType.Keyword
         Styles,
         Document,
+        EmbeddedFile,
         Section,
         TableTemplates,
         TableTemplate,

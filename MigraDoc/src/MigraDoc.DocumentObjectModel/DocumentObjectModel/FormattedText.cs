@@ -282,6 +282,37 @@ namespace MigraDoc.DocumentObjectModel
         }
 
         /// <summary>
+        /// Adds a new Hyperlink of Type "EmbeddedDocument".
+        /// The target is a Bookmark in an embedded Document in this Document.
+        /// </summary>
+        /// <param name="destinationPath">The path to the named destination through the embedded documents.
+        /// The path is separated by '\' and the last segment is the name of the named destination.
+        /// The other segments describe the route from the current (root or embedded) document to the embedded document holding the destination.
+        /// ".." references to the parent, other strings refer to a child with this name in the EmbeddedFiles name dictionary.</param>
+        /// <param name="newWindow">Defines if the HyperlinkType ExternalBookmark shall be opened in a new window.
+        /// If not set, the viewer application should behave in accordance with the current user preference.</param>
+        public Hyperlink AddHyperlinkToEmbeddedDocument(string destinationPath, HyperlinkTargetWindow newWindow = HyperlinkTargetWindow.UserPreference)
+        {
+            return Elements.AddHyperlinkToEmbeddedDocument(destinationPath, newWindow);
+        }
+
+        /// <summary>
+        /// Adds a new Hyperlink of Type "EmbeddedDocument".
+        /// The target is a Bookmark in an embedded Document in an external PDF Document.
+        /// </summary>
+        /// <param name="filename">The path to the target document.</param>
+        /// <param name="destinationPath">The path to the named destination through the embedded documents in the target document.
+        /// The path is separated by '\' and the last segment is the name of the named destination.
+        /// The other segments describe the route from the root document to the embedded document.
+        /// Each segment name refers to a child with this name in the EmbeddedFiles name dictionary.</param>
+        /// <param name="newWindow">Defines if the HyperlinkType ExternalBookmark shall be opened in a new window.
+        /// If not set, the viewer application should behave in accordance with the current user preference.</param>
+        public Hyperlink AddHyperlinkToEmbeddedDocument(string filename, string destinationPath, HyperlinkTargetWindow newWindow = HyperlinkTargetWindow.UserPreference)
+        {
+            return Elements.AddHyperlinkToEmbeddedDocument(filename, destinationPath, newWindow);
+        }
+
+        /// <summary>
         /// Adds a new Image object.
         /// </summary>
         public Image AddImage(string fileName)

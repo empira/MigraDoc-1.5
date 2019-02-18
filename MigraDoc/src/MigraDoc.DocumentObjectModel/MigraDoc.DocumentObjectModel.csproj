@@ -157,6 +157,8 @@
     <Compile Include="DocumentObjectModel\DocumentObjectCollection.cs" />
     <Compile Include="DocumentObjectModel\DocumentRelations.cs" />
     <Compile Include="DocumentObjectModel\DomSR.cs" />
+    <Compile Include="DocumentObjectModel\EmbeddedFile.cs" />
+    <Compile Include="DocumentObjectModel\EmbeddedFiles.cs" />
     <Compile Include="DocumentObjectModel\enums\BorderStyle.cs" />
     <Compile Include="DocumentObjectModel\enums\BorderType.cs" />
     <Compile Include="DocumentObjectModel\enums\BreakType.cs" />

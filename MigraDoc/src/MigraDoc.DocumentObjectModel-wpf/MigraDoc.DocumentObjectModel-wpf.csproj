@@ -514,6 +514,12 @@
     <Compile Include="..\MigraDoc.DocumentObjectModel\DocumentObjectModel\enums\UnitType.cs">
       <Link>DocumentObjectModel\enums\UnitType.cs</Link>
     </Compile>
+        <Compile Include="..\MigraDoc.DocumentObjectModel\DocumentObjectModel\EmbeddedFile.cs">
+            <Link>DocumentObjectModel\EmbeddedFile.cs</Link>
+        </Compile>
+        <Compile Include="..\MigraDoc.DocumentObjectModel\DocumentObjectModel\EmbeddedFiles.cs">
+            <Link>DocumentObjectModel\EmbeddedFiles.cs</Link>
+        </Compile>
     <Compile Include="..\MigraDoc.DocumentObjectModel\DocumentObjectModel\Font.cs">
       <Link>DocumentObjectModel\Font.cs</Link>
     </Compile>

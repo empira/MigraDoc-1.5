@@ -163,6 +163,9 @@ namespace MigraDoc.RtfRendering
         /// </summary>
         private void WriteDocument()
         {
+            if (Document.EmbeddedFiles.Count > 0)
+                throw new InvalidOperationException("Embedded files are not supported in RTF documents.");
+
             RtfFlattenVisitor flattener = new RtfFlattenVisitor();
             flattener.Visit(_document);
             Prepare();
