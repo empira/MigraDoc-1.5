@@ -68,7 +68,7 @@ namespace MigraDoc.Rendering
         /// Formats the elements on the areas provided by the area provider.
         /// </summary>
         /// <param name="gfx">The graphics object to render on.</param>
-        /// <param name="topLevel">if set to <c>true</c> formats the object is on top level.</param>
+        /// <param name="topLevel">if set to <c>true</c> the object to be formatted is on the top level.</param>
         public void FormatOnAreas(XGraphics gfx, bool topLevel)
         {
             _gfx = gfx;

@@ -257,7 +257,7 @@ namespace MigraDoc.DocumentObjectModel.Visitors
                     tabStops.RemoveObjectAt(i);
             }
             // The TabStopCollection is complete now.
-            // Prevent inheritence of tab stops.
+            // Prevent inheritance of tab stops.
             tabStops._fClearAll = true;
         }
 

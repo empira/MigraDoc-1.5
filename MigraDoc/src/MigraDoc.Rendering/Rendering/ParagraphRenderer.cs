@@ -910,7 +910,7 @@ namespace MigraDoc.Rendering
         void RenderBookmarkField(BookmarkField bookmarkField)
         {
             // Add also a named destination, if a PdfDocument is rendered.
-            var pdfDocument = _gfx.PdfPage.Owner;
+            var pdfDocument = _gfx?.PdfPage?.Owner;
             if (pdfDocument != null)
             {
                 var pageNr = pdfDocument.PageCount; // Magic: Pages are added while rendering, so the current page number equals pdfDocument.PageCount.

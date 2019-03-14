@@ -52,7 +52,11 @@ namespace MigraDoc.DocumentObjectModel.Tables
                 table.Rows.Add(new Row());
             
             for (int i = 0; i < newColsRight; i++)
+            {
                 table.Columns.Add(new Column());
+                foreach (Row row in table.Rows)
+                    row.Cells.Add(new Cell());
+            }
         }
 
         /// <summary>

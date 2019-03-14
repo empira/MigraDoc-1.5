@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfSharp-wpf", "..\..\PDFsh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfSharp.Charting-wpf", "..\..\PDFsharp\src\PdfSharp.Charting-wpf\PdfSharp.Charting-wpf.csproj", "{E6A2734E-0CD6-4210-8AEC-47EE348F8D78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFsharp", "..\..\PDFsharp\src\PdfSharp\PDFsharp.csproj", "{5A6055BC-BF86-4FDD-9F62-0109DB7A303B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfSharp", "..\..\PDFsharp\src\PdfSharp\PdfSharp.csproj", "{5A6055BC-BF86-4FDD-9F62-0109DB7A303B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfSharp.Charting", "..\..\PDFsharp\src\PdfSharp.Charting\PdfSharp.Charting.csproj", "{6F98A822-41B0-4C7A-85A6-E95C1D3E88EF}"
 EndProject
