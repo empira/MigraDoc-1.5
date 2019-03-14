@@ -35,6 +35,7 @@ using System.Collections.Generic;
 using MigraDoc.DocumentObjectModel.Internals;
 using PdfSharp.Drawing;
 using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Fields;
 using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.DocumentObjectModel.Tables;
 
@@ -440,8 +441,28 @@ namespace MigraDoc.Rendering
                 formatInfo.StartRow = _startRow;
                 formatInfo._isEnding = _currRow >= _table.Rows.Count - 1;
                 formatInfo.EndRow = _currRow;
+
+                UpdateThisPagesBookmarks(_startRow, _currRow);
             }
             FinishLayoutInfo(area, currentHeight, startingHeight);
+        }
+
+        /// <summary>
+        /// Updates the bookmarks in the given rows.
+        /// Otherwise each BookmarkField will refer to the first page of the table, because initially they are set before the table gets splitted over the pages.
+        /// </summary>
+        private void UpdateThisPagesBookmarks(int startRow, int endRow)
+        {
+            if (_table.Rows.Count == 0)
+                return;
+
+            for (var r = startRow; r <= endRow; r++)
+            {
+                var row = _table.Rows[r];
+
+                foreach (var bookmark in row.GetElementsRecursively<BookmarkField>())
+                    _fieldInfos.AddBookmark(bookmark.Name);
+            }
         }
 
         private void FinishLayoutInfo(Area area, XUnit currentHeight, XUnit startingHeight)
