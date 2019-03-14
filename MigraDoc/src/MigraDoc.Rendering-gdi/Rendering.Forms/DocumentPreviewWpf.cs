@@ -4,7 +4,7 @@
 // Authors:
 //   Stefan Lange (mailto:Stefan.Lange@pdfsharp.com)
 //
-// Copyright (c) 2001-2009 empira Software GmbH, Cologne Area (Germany)
+// Copyright (c) 2001-2019 empira Software GmbH, Cologne Area (Germany)
 //
 // http://www.pdfsharp.com
 // http://www.migradoc.com
