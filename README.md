@@ -1,4 +1,4 @@
-# MigraDoc
+# MigraDoc - An Amazing Project
 MigraDoc Foundation - Creating documents on the fly
 
 MigraDoc references PDFsharp as a submodule. After pulling MigraDoc to a local repository, call
