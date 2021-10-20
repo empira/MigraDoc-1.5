@@ -163,6 +163,15 @@
     <Compile Include="..\MigraDoc.Rendering\Rendering\Area.cs">
       <Link>Rendering\Area.cs</Link>
     </Compile>
+    <Compile Include="..\MigraDoc.Rendering\Rendering\BarcodeFormatInfo.cs">
+      <Link>Rendering\BarcodeFormatInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\MigraDoc.Rendering\Rendering\BarcodeRenderer.cs">
+      <Link>Rendering\BarcodeRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\MigraDoc.Rendering\Rendering\BarcodeRenderInfo.cs">
+      <Link>Rendering\BarcodeRenderInfo.cs</Link>
+    </Compile>
     <Compile Include="..\MigraDoc.Rendering\Rendering\BordersRenderer.cs">
       <Link>Rendering\BordersRenderer.cs</Link>
     </Compile>

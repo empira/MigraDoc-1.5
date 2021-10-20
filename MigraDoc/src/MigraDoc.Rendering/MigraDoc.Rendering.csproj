@@ -67,6 +67,9 @@
     <Compile Include="Rendering.UnitTest\TestTable.cs" />
     <Compile Include="Rendering.UnitTest\ValueDumper.cs" />
     <Compile Include="Rendering\Area.cs" />
+    <Compile Include="Rendering\BarcodeFormatInfo.cs" />
+    <Compile Include="Rendering\BarcodeRenderer.cs" />
+    <Compile Include="Rendering\BarcodeRenderInfo.cs" />
     <Compile Include="Rendering\BordersRenderer.cs" />
     <Compile Include="Rendering\ChartFormatInfo.cs" />
     <Compile Include="Rendering\ChartRenderer.cs" />
